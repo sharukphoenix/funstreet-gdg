@@ -1,4 +1,3 @@
-Copyright (c) 2025, Funstreet Recharge, Google Developer Groups on Campus Rajalakshmi Engineering College
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
