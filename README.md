@@ -80,8 +80,8 @@ The Fun Street web app is designed to manage a college festival's interactive ga
 
 Clone this repository:
 
-    git clone https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate.git [MY_APP]
-    cd [MY_APP]
+    git clone https://github.com/prajein/funstreet-gdg.git
+    cd funstreet-gdg
 
 Remove the `.git` folder since you want to create a new repository
 
