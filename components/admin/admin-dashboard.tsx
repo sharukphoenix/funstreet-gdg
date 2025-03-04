@@ -1,6 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
 import { Card } from "../ui/card";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -12,7 +16,10 @@ import { registerUser, rechargeTokens, getUser, getUserByPhone, User } from "@/l
 import { collection, query, orderBy, limit, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
+
 export default function AdminDashboard() {
+  const [loading, setLoading] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   const [activeUsers, setActiveUsers] = useState<User[]>([]);
   const [topPlayers, setTopPlayers] = useState<User[]>([]);
   const [registrationData, setRegistrationData] = useState({
@@ -124,7 +131,13 @@ export default function AdminDashboard() {
         </TabsList>
 
         <TabsContent value="users" className="space-y-6">
-          <Card className="p-6">
+          {loading ? (
+    <div className="flex justify-center p-8">
+      <Spinner />
+    </div>
+  ) : isAdmin ? (
+    <>
+    <Card className="p-6">
             <h2 className="text-xl font-semibold mb-4">Register New User</h2>
             <form onSubmit={handleRegistration} className="space-y-4">
               <div className="space-y-2">
@@ -157,10 +170,20 @@ export default function AdminDashboard() {
               <Button type="submit">Register User</Button>
             </form>
           </Card>
-        </TabsContent>
+        </>
+      ) : (
+        <div className="p-6 text-center">Unauthorized access</div>
+      )}
+    </TabsContent>
 
         <TabsContent value="recharge">
-          <Card className="p-6">
+          {loading ? (
+    <div className="flex justify-center p-8">
+      <Spinner />
+    </div>
+  ) : isAdmin ? (
+    <>
+    <Card className="p-6">
             <h2 className="text-xl font-semibold mb-4">Recharge Tokens</h2>
             <form onSubmit={handleRecharge} className="space-y-4">
               <div className="space-y-2">
@@ -200,10 +223,20 @@ export default function AdminDashboard() {
               <Button type="submit" disabled={!searchedUser}>Recharge Tokens</Button>
             </form>
           </Card>
-        </TabsContent>
+        </>
+      ) : (
+        <div className="p-6 text-center">Unauthorized access</div>
+      )}
+    </TabsContent>
 
         <TabsContent value="active">
-          <Card className="p-6">
+          {loading ? (
+    <div className="flex justify-center p-8">
+      <Spinner />
+    </div>
+  ) : isAdmin ? (
+    <>
+    <Card className="p-6">
             <h2 className="text-xl font-semibold mb-4">Active Users</h2>
             <Table>
               <TableHeader>
@@ -226,10 +259,20 @@ export default function AdminDashboard() {
               </TableBody>
             </Table>
           </Card>
-        </TabsContent>
+        </>
+      ) : (
+        <div className="p-6 text-center">Unauthorized access</div>
+      )}
+    </TabsContent>
 
         <TabsContent value="leaderboard">
-          <Card className="p-6">
+          {loading ? (
+    <div className="flex justify-center p-8">
+      <Spinner />
+    </div>
+  ) : isAdmin ? (
+    <>
+    <Card className="p-6">
             <h2 className="text-xl font-semibold mb-4">Top Players</h2>
             <Table>
               <TableHeader>
@@ -252,7 +295,11 @@ export default function AdminDashboard() {
               </TableBody>
             </Table>
           </Card>
-        </TabsContent>
+        </>
+      ) : (
+        <div className="p-6 text-center">Unauthorized access</div>
+      )}
+    </TabsContent>
       </Tabs>
     </div>
   );

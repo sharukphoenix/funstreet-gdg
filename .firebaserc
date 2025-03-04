@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "next-firebase-mui",
+    "default": "funstreet-b489a",
     "prod": "next-firebase-mui",
     "test": "next-firebase-mui-test"
   }
