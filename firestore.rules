@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users can read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Publicly readable games, only admins can write
+    match /games/{gameId} {
+      allow read;
+      allow write: if request.auth.token.admin == true;
+    }
+    
+    // Leaderboard is publicly readable, only admins can write
+    match /leaderboard/{userId} {
+      allow read;
+      allow write: if request.auth.token.admin == true;
+    }
+  }
+}
