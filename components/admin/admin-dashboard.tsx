@@ -39,7 +39,7 @@ export default function AdminDashboard() {
     // Subscribe to active users (users with tokens > 0)
     const usersQuery = query(
       collection(db, "users"),
-      orderBy("tokens", "desc"),
+      orderBy("points", "desc"),
       limit(10)
     );
 
@@ -243,7 +243,7 @@ export default function AdminDashboard() {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Phone</TableHead>
-                  <TableHead>Tokens</TableHead>
+                  <TableHead>Points</TableHead>
                   <TableHead>Games Played</TableHead>
                 </TableRow>
               </TableHeader>
@@ -252,7 +252,7 @@ export default function AdminDashboard() {
                   <TableRow key={user.userId}>
                     <TableCell>{user.name}</TableCell>
                     <TableCell>{user.phone}</TableCell>
-                    <TableCell>{user.tokens}</TableCell>
+                    <TableCell>{user.points}</TableCell>
                     <TableCell>{user.gamesPlayed}</TableCell>
                   </TableRow>
                 ))}
@@ -280,7 +280,7 @@ export default function AdminDashboard() {
                   <TableHead>Rank</TableHead>
                   <TableHead>Name</TableHead>
                   <TableHead>Games Played</TableHead>
-                  <TableHead>Tokens</TableHead>
+                  <TableHead>Points</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -289,7 +289,7 @@ export default function AdminDashboard() {
                     <TableCell>{index + 1}</TableCell>
                     <TableCell>{user.name}</TableCell>
                     <TableCell>{user.gamesPlayed}</TableCell>
-                    <TableCell>{user.tokens}</TableCell>
+                    <TableCell>{user.points}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

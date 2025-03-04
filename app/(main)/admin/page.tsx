@@ -53,7 +53,7 @@ export default function AdminPage() {
   useEffect(() => {
     const usersQuery = query(
       collection(db, "users"),
-      orderBy("tokens", "desc"),
+      orderBy("points", "desc"),
       limit(10)
     );
 
@@ -74,7 +74,8 @@ export default function AdminPage() {
       await registerUser(
         registrationData.userId,
         registrationData.name,
-        registrationData.phone
+        registrationData.phone,
+        0 // Initial points
       );
       toast({
         title: "Success",
@@ -85,6 +86,24 @@ export default function AdminPage() {
       toast({
         title: "Error",
         description: error instanceof Error ? error.message : "Failed to register user",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const handleAddPoints = async (userId: string, points: number) => {
+    try {
+      await updateDoc(doc(db, 'users', userId), {
+        points: increment(points)
+      });
+      toast({
+        title: "Success",
+        description: `Added ${points} points to user`
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to add points",
         variant: "destructive"
       });
     }
@@ -252,8 +271,9 @@ export default function AdminPage() {
                   <TableRow>
                     <TableHead>Name</TableHead>
                     <TableHead>Phone</TableHead>
-                    <TableHead>Tokens</TableHead>
+                    <TableHead>Points</TableHead>
                     <TableHead>Games Played</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -261,8 +281,11 @@ export default function AdminPage() {
                     <TableRow key={user.userId}>
                       <TableCell>{user.name}</TableCell>
                       <TableCell>{user.phone}</TableCell>
-                      <TableCell>{user.tokens}</TableCell>
+                      <TableCell>{user.points}</TableCell>
                       <TableCell>{user.gamesPlayed}</TableCell>
+                      <TableCell>
+                        <Button variant="outline" onClick={() => handleAddPoints(user.userId, 10)}>+10</Button>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -288,7 +311,7 @@ export default function AdminPage() {
                     <TableHead>Rank</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Games Played</TableHead>
-                    <TableHead>Tokens</TableHead>
+                    <TableHead>Points</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -297,7 +320,7 @@ export default function AdminPage() {
                       <TableCell>{index + 1}</TableCell>
                       <TableCell>{user.name}</TableCell>
                       <TableCell>{user.gamesPlayed}</TableCell>
-                      <TableCell>{user.tokens}</TableCell>
+                      <TableCell>{user.points}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

@@ -1,4 +1,6 @@
+"use client";
 import type { Metadata } from "next";
+import { useEffect } from 'react';
 import { Work_Sans } from "next/font/google";
 import "@/app/globals.css";
 import { cn } from "@/lib/utils";
@@ -8,13 +10,8 @@ import { ReactNode } from "react";
 
 const font = Work_Sans({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Funstreet | Vercel Next.JS Firebase Shadcn/ui Tailwind Boilerplate",
-  description:
-    "Funstreet is a Vercel Next.JS Firebase Shadcn/ui Tailwind Boilerplate project to help you get started with your next project.",
-};
-
 export default function RootLayout({ children }: { children: ReactNode }) {
+
   return (
     <html lang="en">
       <body className={cn(font.className)}>

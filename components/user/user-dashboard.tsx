@@ -48,7 +48,9 @@ export default function UserDashboard({ userId }: { userId: string }) {
         {/* Token Balance */}
         <Card className="p-6">
           <h2 className="text-xl font-semibold mb-4">Token Balance</h2>
-          <div className="text-3xl font-bold">{userData.tokens} 🪙</div>
+          <div className="text-3xl font-bold">{userData.tokens.toLocaleString()} 🪙</div>
+          <h2 className="text-xl font-semibold mt-6 mb-4">Points Balance</h2>
+          <div className="text-3xl font-bold">{userData.points.toLocaleString()} ⭐️</div>
         </Card>
 
         {/* Game History */}
