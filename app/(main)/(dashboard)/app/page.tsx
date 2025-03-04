@@ -1,9 +1,9 @@
-import { DemoDashboard } from "@/components/demo-dashboard/demo-dashboard";
+import AdminDashboard from "@/components/admin/admin-dashboard";
 
 const ApplicationPage = () => {
   return (
     <>
-      <DemoDashboard />
+      <AdminDashboard />
     </>
   );
 };

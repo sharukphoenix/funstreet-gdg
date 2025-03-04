@@ -1,4 +1,4 @@
-# Venefish 🐟
+# Funstreet 🐟
 
 ### Boilerplate for React TypeScript projects using Next.js, shadcn/ui, Tailwind and Firebase on Vercel!
 
@@ -31,4 +31,4 @@ The following is only needed if you want to use `firebase/admin` (not part of th
 - You can use `api/test.ts` to stringify your private key so you can use in in the environment
 - You need to define the same `FIREBASE_ADMIN_SDK` environment variable in Vercel
 
-**Created by [⬡ Enesien Software](https://enesien.com)**
+**Created by [Google Developer Groups On Campus REC](https://github.com/gdgoncampusrec)**

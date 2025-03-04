@@ -15,7 +15,7 @@ export const NavBar: FC = () => {
               <div className="flex items-center">
                 <FishIcon className="w-8 h-8 mr-2 inline" />{" "}
                 <span className="text-xl font-semibold tracking-tighter text-slate-800 mr-6">
-                  Venefish
+                  Funstreet
                 </span>
               </div>
             </Link>

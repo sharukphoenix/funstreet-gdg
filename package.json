@@ -1,7 +1,7 @@
 {
   "name": "funstreet-gdg",
   "description": "Boilerplate & template for Vercel projects using Next.js, Firebase and shadcn/ui.",
-  "author": "Enesien Software <contact@enesien.com> (https://enesien.com)",
+  "author": "Google Developer Groups On Campus REC",
   "version": "0.1.0",
   "private": true,
   "scripts": {
